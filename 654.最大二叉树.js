@@ -61,45 +61,29 @@ function TreeNode(val) {
     this.val = val;
     this.left = this.right = null;
 }
+function getRoot(nums, left, right) {
+    if (left > right) {
+        return null;
+    }
+    let max = 0;
+    let maxIndex = -1;
+    for (let i = left; i <= right; i++) {
+        if (i === left || nums[i] > max) {
+            max = nums[i];
+            maxIndex = i;
+        }
+    }
+    let node = new TreeNode(max);
+    node.left = getRoot(nums, left, maxIndex - 1);
+    node.right = getRoot(nums, maxIndex + 1, right);
+    return node;
+}
 /**
  * @param {number[]} nums
  * @return {TreeNode}
  */
 var constructMaximumBinaryTree = function (nums) {
-    const len = nums.length;
-    let root = null;
-    if (!len) {
-        return root;
-    }
-    let max = 0;
-    let maxIdx = -1;
-
-    let index = 0;
-    for (; index < len; index++) {
-        const element = nums[index];
-        if (index === 0 || element > max) {
-            max = element;
-            maxIdx = index;
-        }
-    }
-    index = 0;
-    let node = null;
-    for (; index < len; index++) {
-        const newNode = new TreeNode(nums[index])
-        if (index <= maxIdx) {
-            newNode.left = node;
-            node = newNode;
-            if (index === maxIdx) {
-                root = newNode;
-            }
-        } else if (index > maxIdx) {
-            node.right = newNode;
-            node = node.right
-        }
-    }
-    return root;
+    return getRoot(nums, 0, nums.length - 1);
 
 };
 // @lc code=end
-
-console.log(JSON.stringify(constructMaximumBinaryTree([3, 2, 1, 6, 0, 5]), null, 2));
