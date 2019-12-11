@@ -1,0 +1,12 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 7,
+        "sourceType": "script",
+        "ecmaFeatures": {}
+    },
+    "extends": "standard",
+    "rules": {
+        "no-irregular-whitespace": "off",
+        "no-unused-vars": "off"
+    }
+}
