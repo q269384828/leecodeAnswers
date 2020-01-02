@@ -51,4 +51,8 @@ var uniquePaths = function (m, n) {
 
 /**
  * 这其实是相当与 (n-1)个x 和 n 个  y 的组合
+ * // TODO: 动态规划思路
+ * dp[i][j]表示到达i,j点可选的路径
+ *  1. dp[i][j]=dp[i][j-1]+dp[i-1][j]
+ *  2. dp[0][j] 和 dp[i][0] 在边界,故只有一条路径
  */
