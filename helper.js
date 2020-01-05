@@ -25,3 +25,15 @@ function nodesToArray (head) {
   }
   return arr
 }
+
+function test (fn, ...args) {
+  const result = fn(...args)
+  console.log(result)
+}
+
+module.exports = {
+  ListNode,
+  arrayToNodes,
+  nodesToArray,
+  test
+}
