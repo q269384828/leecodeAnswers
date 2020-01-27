@@ -28,7 +28,8 @@ function nodesToArray (head) {
 
 function test (fn, ...args) {
   const result = fn(...args)
-  console.log(result)
+  console.log('testResult', result)
+  return result
 }
 
 module.exports = {
