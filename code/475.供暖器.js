@@ -11,28 +11,27 @@
  * @return {number}
  */
 var findRadius = function (houses, heaters) {
-  let radius = 0
-  for (let houseIndex = 0; houseIndex < houses.length; houseIndex++) {
-    const house = houses[houseIndex]
-    let radiusTmp = 0
-    for (let i = 0; i < heaters.length; i++) {
-      const heater = heaters[i]
-      const tmp = Math.abs(heater - house)
-      if (!radiusTmp) {
-        radiusTmp = tmp
-      } else if (tmp < radiusTmp) {
-        radiusTmp = tmp
+  const n = heaters.length
+  heaters.sort((a, b) => a - b)
+  let res = 0
+  houses.forEach(house => {
+    let left = 0
+    let right = n
+    while (left < right) {
+      const mid = Math.floor((left + right) / 2)
+      if (house < heaters[mid]) {
+        right = mid
+      } else {
+        left = mid + 1
       }
     }
-    if (!radius) {
-      radius = radiusTmp
-    } else if (radiusTmp > radius) {
-      radius = radiusTmp
-    }
-  }
-
-  return radius
+    const d1 = (right === 0) ? Number.MAX_VALUE : Math.abs(heaters[right - 1] - house)
+    const d2 = (right === n) ? Number.MAX_VALUE : Math.abs(heaters[right] - house)
+    const distance = Math.min(d1, d2)
+    res = Math.max(res, distance)
+  })
+  return res
 }
 // @lc code=end
-console.log(findRadius([1, 2, 3], [2]))
+console.log(findRadius([1], [1, 2, 3, 4]))
 //  findRadius([1, 2, 3], [2])

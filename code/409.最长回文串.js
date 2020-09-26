@@ -28,4 +28,3 @@ var longestPalindrome = function (s) {
   return pairCount * 2 + Number(hasSignal)
 }
 // @lc code=end
-console.log(longestPalindrome('abccccdd'))

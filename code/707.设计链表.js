@@ -152,11 +152,3 @@ MyLinkedList.prototype.deleteAtIndex = function (index) {
  * obj.deleteAtIndex(index)
  */
 // @lc code=end
-
-const list = new MyLinkedList()
-console.log(list.addAtHead(1))
-console.log(list.addAtTail(3))
-console.log(list.addAtIndex(1, 2))
-console.log(list.get(1))
-console.log(list.deleteAtIndex(1))
-console.log(list.get(1))
