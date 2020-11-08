@@ -19,6 +19,18 @@
  * @return {TreeNode}
  */
 var removeLeafNodes = function (root, target) {
-  // TODO:
+  function helper (node) {
+    if (!node) {
+      return null
+    }
+    node.left = helper(node.left)
+    node.right = helper(node.right)
+    if (!node.left && !node.right && node.val === target) {
+      return null
+    }
+    return node
+  }
+  root = helper(root)
+  return root
 }
 // @lc code=end
